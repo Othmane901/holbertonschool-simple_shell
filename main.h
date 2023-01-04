@@ -11,7 +11,7 @@
 #include <errno.h>
 #include <signal.h>
 
-
+char *get_env(char *command);
 int exec(char **args);
 char *check_path(char *command);
 char *f_read(void);

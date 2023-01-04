@@ -55,31 +55,20 @@ return (NULL);
 }
 
 /**
-* f_read - function that reads the user input
-*
-* Return: line if success or NULL if it fails
+* print_env - prints the environment variable
 */
 
-char *f_read(void)
+void print_env(void)
 {
-char *line = NULL;
-size_t size = 0;
-ssize_t length = 0;
+int index = 0;
+int size = 0;
+extern char **environ;
 
-length = getline(&line, &size, stdin);
-
-if (length == -1 || _strcmp(line, "exit\n") == 0)
+while (environ[index] != NULL)
 {
-free(line);
-exit(0);
+size = strlen(environ[index]);
+write(1, environ[index], size);
+write(1, "\n", 1);
+index++;
 }
-if (length == -1 || _strcmp(line, "env\n") == 0)
-{
-get_env();
-}
-if (line[length - 1] == '\n' && line[1] != '\0')
-{
-line[length - 1] = '\0';
-}
-return (line);
 }
